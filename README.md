@@ -1,9 +1,9 @@
 # AgroCart – Your Digital Agriculture Marketplace
 
-AgroCart is a modern React-based web application that helps farmers and buyers connect seamlessly through an intuitive digital marketplace.  
+### AgroCart is a modern React-based web application that helps farmers and buyers connect seamlessly through an intuitive digital marketplace.  
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 In the project directory, you can run:
 
