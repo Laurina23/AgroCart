@@ -62,7 +62,7 @@ export default function CartPage() {
                 <div key={item.id} style={styles.cartItem}>
                   <div style={styles.itemDetails}>
                     <h3>{item.name}</h3>
-                    <p>${item.price} each</p>
+                    <p>₹{item.price} each</p>
                   </div>
                   <input
                     type="number"
@@ -79,7 +79,7 @@ export default function CartPage() {
             </div>
               
             <div style={styles.totalSection}>
-              <h3>Total: ${total.toFixed(2)}</h3>
+              <h3>Total:₹{total.toFixed(2)}</h3>
               <button onClick = {CheckOut} style={styles.checkoutBtn}>Proceed to Checkout</button>
             </div>
           </>

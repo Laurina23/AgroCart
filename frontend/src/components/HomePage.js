@@ -126,7 +126,7 @@ const HomePage = () => {
               </svg>
               <span className="cart-count">2</span>
             </button>
-            <button className="auth-button">Login</button>
+            <button className="auth-button" onClick={() => navigate('/')}>Logout</button>
           </div>
         </div>
       </nav>
