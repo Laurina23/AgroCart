@@ -160,8 +160,8 @@ const HomePage = () => {
           <div className="drawer-section">
             <h3>Account</h3>
             <ul className="drawer-links">
-              <li>Profile</li>
-              <li>Orders</li>
+            <li onClick={() => navigate('/profile')}>Profile</li>
+            <li>Orders</li>
               <li>Wishlist</li>
               <li>Settings</li>
             </ul>

@@ -6,6 +6,7 @@ import CartPage from './components/CartPage';
 import HomePage from './components/HomePage';
 import About from './components/About'
 import Payment from './components/Payment';
+import ProfilePage from './components/ProfilePage';
 
 
 function App() {
@@ -19,6 +20,8 @@ function App() {
         <Route path="/home" element={<HomePage />} />
         <Route path="/about" element={<About />} />
         <Route path="/payment" element={<Payment/>} />
+        <Route path="/profile" element={<ProfilePage/>} />
+
       </Routes>
     </BrowserRouter>
   );
