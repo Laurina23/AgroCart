@@ -21,7 +21,6 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/payment" element={<Payment/>} />
         <Route path="/profile" element={<ProfilePage/>} />
-
       </Routes>
     </BrowserRouter>
   );
