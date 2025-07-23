@@ -5,15 +5,16 @@ phases:
     runtime-versions:
       nodejs: 18
     commands:
-      - npm install --prefix frontend
+      - cd frontend
+      - npm install
 
   build:
     commands:
-      - npm run build --prefix frontend
-      - cp frontend/appspec.yml frontend/build/
-      - cp -r frontend/scripts frontend/build/
-      - cd frontend && zip -r build.zip build
-      - mv frontend/build.zip ../build.zip
+      - cd frontend
+      - npm run build
+      - cp appspec.yml build/
+      - cp -r scripts build/
+      - cd build && zip -r ../build.zip .
 
 artifacts:
   files:
