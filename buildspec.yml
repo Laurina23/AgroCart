@@ -12,13 +12,13 @@ phases:
   build:
     commands:
       - echo "Building React app"
+      - cd frontend
       - npm run build
-      - echo "Preparing deploy package"
-      - mkdir -p ../package
-      - cp -r build/* ../package/
-      - cp ../appspec.yml ../package/
-      - cp -r ../scripts ../package/
-      - cd ../package && zip -r ../build.zip .
+      - echo "Copying deployment configs"
+      - cp ../appspec.yml build/
+      - cp -r ../scripts build/
+      - cd build
+      - zip -r ../../build.zip .
 
 artifacts:
   files:
