@@ -5,12 +5,10 @@ phases:
     runtime-versions:
       nodejs: 18
     commands:
-      - cd frontend
       - npm install
 
   build:
     commands:
-      - cd frontend
       - npm run build
       - cp appspec.yml build/
       - cp -r scripts build/
