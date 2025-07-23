@@ -3,17 +3,18 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      nodejs: 18
+      nodejs: 20 
     commands:
-      - echo "Installing dependencies"
+      - echo "Cleaning & installing frontend dependencies"
       - cd frontend
+      - rm -rf node_modules package-lock.json
       - npm install
 
   build:
     commands:
       - echo "Building React app"
       - npm run build
-      - echo "Copying deployment configs"
+      - echo "Copying deploy configs"
       - cp ../appspec.yml build/
       - cp -r ../scripts build/
       - cd build && zip -r ../../build.zip .
