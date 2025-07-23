@@ -5,17 +5,15 @@ phases:
     runtime-versions:
       nodejs: 18
     commands:
-      - echo "Changing to frontend directory"
-      - cd frontend
       - echo "Installing dependencies"
+      - cd frontend
       - npm install
 
   build:
     commands:
-      - echo "🚧 Building React app"
-      - cd frontend
+      - echo "Building React app"
       - npm run build
-      - echo "Preparing build artifact"
+      - echo "Copying deployment configs"
       - cp ../appspec.yml build/
       - cp -r ../scripts build/
       - cd build && zip -r ../../build.zip .
