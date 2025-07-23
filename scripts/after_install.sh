@@ -1,7 +1,6 @@
 #!/bin/bash
-yum install -y nginx
-systemctl enable nginx
-systemctl start nginx
+set -e
 
-rm -rf /usr/share/nginx/html/*
-cp -r /var/www/html/* /usr/share/nginx/html/
+# The new files are already in place
+# Start the Nginx web server
+systemctl start nginx
