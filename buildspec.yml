@@ -10,10 +10,11 @@ phases:
 
   build:
     commands:
+      - cd frontend
       - npm run build
       - cp appspec.yml build/
       - cp -r scripts build/
-      - cd build && zip -r ../build.zip .
+      - cd build && zip -r ../../build.zip .
 
 artifacts:
   files:
