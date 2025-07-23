@@ -1,11 +1,11 @@
 #!/bin/bash
 set -e
 
-# Install Nginx if it is not already installed
-if ! rpm -q nginx > /dev/null; then
-  yum install -y nginx
-  systemctl enable nginx
-fi
+# Install Nginx on Amazon Linux 2023
+echo "Installing Nginx..."
+yum update -y
+yum install -y nginx
+systemctl enable nginx
 
-# Clean out the old web content before the new version is deployed
+# Clean out the old web content
 rm -rf /usr/share/nginx/html/*
