@@ -3,21 +3,37 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      nodejs: 20 
+      nodejs: 20
+  pre_build:
     commands:
-      - echo "Cleaning & installing frontend dependencies"
+      - echo "Installing frontend dependencies"
       - cd frontend
-      - rm -rf node_modules package-lock.json
       - npm install
-
+      - cd ..
   build:
     commands:
       - echo "Building React app"
+      - cd frontend
       - npm run build
-      - echo "Copying deploy configs"
-      - cp ../appspec.yml build/
-      - cp -r ../scripts build/
-      - cd build && zip -r ../../build.zip .
+      - cd ..
+
+      - echo "Creating deployment package"
+      # Create a clean directory to stage the files for zipping
+      - mkdir deployment_package
+
+      # Copy the necessary files into the staging directory
+      - cp -r frontend/build/* deployment_package/
+      - cp appspec.yml deployment_package/
+      - cp -r scripts/ deployment_package/
+
+      # --- This is a debug step to see the structure in CodeBuild logs ---
+      - echo "Verifying contents of the deployment package:"
+      - ls -R deployment_package/
+
+      # Create the final zip file from the contents of the staging directory
+      - cd deployment_package
+      - zip -r ../build.zip .
+      - cd ..
 
 artifacts:
   files:
