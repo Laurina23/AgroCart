@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
 
-# The new files are already in place
-# Start the Nginx web server
+# Nginx is already installed, and the new files are in place.
+# This script just needs to start the server.
 systemctl start nginx
