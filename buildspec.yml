@@ -14,7 +14,7 @@ phases:
     commands:
       - echo "Deploying to EC2 instance..."
       - ARTIFACT_NAME=$(date +%s)-build.zip
-      - cd frontend/build && zip -r ../../$ARTIFACT_NAME . && cd ../..
+      - cd build && zip -r ../../$ARTIFACT_NAME . && cd ../..
       - aws s3 cp $ARTIFACT_NAME s3://$S3_BUCKET/$ARTIFACT_NAME
       - >
         aws ssm send-command
@@ -27,6 +27,6 @@ phases:
           \"aws s3 cp s3://$S3_BUCKET/$ARTIFACT_NAME /tmp/$ARTIFACT_NAME\",
           \"rm -rf /usr/share/nginx/html/*\",
           \"unzip -o /tmp/$ARTIFACT_NAME -d /usr/share/nginx/html\",
-          \"rm /tmp/$ARTIFACT_NAME'\",
+          \"rm /tmp/$ARTIFACT_NAME\",
           \"systemctl restart nginx\"
         ]"
