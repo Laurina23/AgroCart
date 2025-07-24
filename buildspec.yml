@@ -1,18 +1,11 @@
 version: 0.2
 
 phases:
-  install:
-    runtime-versions:
-      nodejs: 20
-  pre_build:
-    commands:
-      - echo "Installing frontend dependencies"
-      - cd frontend
-      - npm install
   build:
     commands:
-      - echo "Building React app"
+      - echo "Navigating to frontend and building..."
       - cd frontend
+      - npm install
       - npm run build
   post_build:
     commands:
@@ -30,6 +23,7 @@ phases:
           "if ! rpm -q nginx > /dev/null; then yum install -y nginx; systemctl enable nginx; fi",
           "aws s3 cp s3://$S3_BUCKET/'$ARTIFACT_NAME' /tmp/'$ARTIFACT_NAME'",
           "rm -rf /usr/share/nginx/html/*",
-          "unzip /tmp/'$ARTIFACT_NAME' -d /usr/share/nginx/html",
+          "unzip -o /tmp/'$ARTIFACT_NAME' -d /usr/share/nginx/html",
+          "rm /tmp/'$ARTIFACT_NAME'",
           "systemctl restart nginx"
         ]'
