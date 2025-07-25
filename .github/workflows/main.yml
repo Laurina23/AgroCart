@@ -26,10 +26,16 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
 
-      - name: Build and Scan image with Trivy
+      # ---- CORRECTED SECTION ----
+      # Step 1: Build the image with a temporary tag for scanning
+      - name: Build Docker image for Trivy scan
+        run: docker build -t scan-image:latest .
+
+      # Step 2: Scan the locally built image using Trivy
+      - name: Scan image with Trivy
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: '.'
+          image-ref: 'scan-image:latest'
           format: 'table'
           exit-code: '1'
           ignore-unfixed: true
@@ -50,9 +56,4 @@ jobs:
       - name: Configure Kubectl
         run: aws eks update-kubeconfig --name testing-cluster --region ap-south-1
       
-      - name: Deploy to EKS
-        run: |
-          kubectl apply -f k8s/my-sealed-secret.yaml
-          sed -i 's|IMAGE_PLACEHOLDER|${{ steps.build-image.outputs.image }}|g' k8s/deployment.yaml
-          kubectl apply -f k8s/deployment.yaml
-          kubectl apply -f k8s/service.yaml
+      -
