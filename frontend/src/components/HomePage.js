@@ -182,6 +182,7 @@ const HomePage = () => {
       <div className = "hero-section">
       <div className="hero-text">
             <h1>Quality Agricultural Products <br/> for Modern Farming</h1>
+            <h3>Hey this is laurina!</h3>
             <p>Enhance your farm productivity with our premium agricultural solutions</p>
             <button className="cta-button">Explore Products</button>
           </div>
